@@ -11,7 +11,7 @@
     <Row :gutter="20" style="margin-top: 10px;">
       <i-col :md="24" :lg="8" style="margin-bottom: 20px;">
         <Card shadow>
-          <chart-pie v-for="(pieData,index) in options" :key='index' style="height: 300px;" :value="pieData" text="用户访问来源"></chart-pie>
+          <chart-pie style="height: 300px;" :value="pieData" text="用户访问来源"></chart-pie>
         </Card>
       </i-col>
       <i-col :md="24" :lg="16" style="margin-bottom: 20px;">

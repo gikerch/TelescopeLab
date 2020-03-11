@@ -654,6 +654,10 @@ def getchart():
         d = {'chartType': 'count',
            'Chartoption': 23
            }
+    elif query == 'count1':
+        d = {'chartType': 'count',
+           'Chartoption': 39
+           }
     elif query == 'line':
         d = {'chartType': 'line',
            'Chartoption': line()

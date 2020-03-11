@@ -50,7 +50,7 @@
               <i-col v-if="chartType=='count'" span='12' offset="5" style="height: 150px;margin-top:150px;margin-bottom:12px;padding-bottom: 10px;">
                 <count-to :end="options[0].Chartoption" count-class="count-style"/>
               </i-col>
-              <chart-pie v-for="(opt,index) in options" :key="index" style="height: 500px" :value="pieData" :option="opt.Chartoption" :text="queryString"></chart-pie>
+                <chart-pie v-for="(opt,index) in options" :key=index :id=index style="height: 500px" :value="pieData" :option="opt.Chartoption" :text="queryString"></chart-pie>
             </i-col>
           </Row>
           <Row>
@@ -246,11 +246,11 @@ export default {
     })
     // 初始化echart对象
     getChart('今日搜索量','b.csv').then(res => {
-              this.options = res.data
-              // this.opt = res.data.Chartoption
-              this.chartType = res.data[0].chartType
-              // this.title = res.data.title
-              // this.text = res.data.text
+              this.options = [1,2,3,4,5,6]
+              this.opt = res.data.Chartoption
+              this.chartType = 'init'
+              this.title = res.data.title
+              this.text = res.data.text
             }).catch(err => {
               console.log(err)
             })
@@ -328,12 +328,23 @@ export default {
         }
         else{
           // ajax.get请求
-          getChart(this.queryString,this.selected_table).then(res => {
+          // bad solution for more than one chart
+
+            this.options = [1,2,3,4,5]
+            this.opt = res.data.Chartoption
+            this.chartType = 'bad solution'
+            this.title = res.data.title
+            this.text = res.data.text
+
+
+            getChart(this.queryString,this.selected_table).then(res => {
               this.options = res.data
               // this.opt = res.data.Chartoption
               this.chartType = res.data[0].chartType
               this.title = res.data.title
               this.text = res.data.text
+
+              
             }).catch(err => {
               console.log(err)
             })

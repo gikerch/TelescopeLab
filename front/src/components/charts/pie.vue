@@ -18,7 +18,7 @@ export default {
         },
     value: Array,
     text: String,
-    title: String
+    title: String,
   },
   data () {
     return {
@@ -36,33 +36,34 @@ export default {
     }
   },
   watch:{//用于监测子组件暴露的属性值变化所触发的动作
-        chartops: function () {
+        option: function () {
           this.$nextTick(() => {
-          this.dom.clear();
-          // console.log(this.value)
-          console.log(this.chartops)
+          // this.dom.clear()
+          // alert(Object.keys(this.option).length)
+          // document.getElementById("3")
 
           this.dom = echarts.init(this.$refs.dom, 'tdTheme')
-          this.dom.setOption(this.chartops)
+          this.dom.clear()
 
-        // this.dom.on('click', function(params) {
-        //   this.$emit('click')
-        //     })
+          this.dom.setOption(this.chartops)
+          
+          
+          // this.dom = echarts.init(document.getElementById("0"), 'tdTheme')
+          // this.dom.clear()
+          // this.dom.setOption(this.chartops)
+ 
+          // echarts.refresh()
           on(window, 'resize', this.resize)
           })
-        }
+          
+        },
+        deep: true
 
       },
   mounted () {
     this.$nextTick(() => {
       let legend = this.value.map(_ => _.name)
       this.opt = {
-        // title: {
-        //   text: this.text,
-        //   subtext: this.subtext,
-        //   x: 'left',
-        //   // y: 'bottom'
-        // },
         tooltip: {
           trigger: 'item',
           formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -106,7 +107,7 @@ export default {
       }
       this.dom = echarts.init(this.$refs.dom, 'tdTheme')
       this.dom.setOption(this.opt)
-      // this.dom.clear()
+      this.dom.clear()
       on(window, 'resize', this.resize)
     })
   },
